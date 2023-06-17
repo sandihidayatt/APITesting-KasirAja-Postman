@@ -1,0 +1,5390 @@
+{
+	"info": {
+		"_postman_id": "4c625be9-45db-4c8e-8e56-8be1c6af01d7",
+		"name": "kasirAja",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17714903",
+		"_collection_link": "https://www.postman.com/sandihidayat/workspace/sanber/collection/17714903-4c625be9-45db-4c8e-8e56-8be1c6af01d7?action=share&creator=17714903&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"item": [
+				{
+					"name": "Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var respon = JSON.parse(responseBody)\r",
+									"pm.collectionVariables.set(\"email\", respon.data.email);\r",
+									"pm.collectionVariables.set(\"password\", \"123adsfadf@\");\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+									"});\r",
+									"pm.test(\"Body matches string message \", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Toko berhasil didaftarkan\");\r",
+									"});\r",
+									"pm.test(\"Body matches string name \", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(respon.data.name);\r",
+									"});\r",
+									"pm.test(\"Body matches string email\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(respon.data.email);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Toko Maju Mundur\",\r\n   \"email\": \"majumundur@gmail.com\",\r\n   \"password\": \"123adsfadf@\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/registration",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration Empty Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Toko Maju Mundur\",\r\n   \"email\": \"\",\r\n   \"password\": \"123adsfadf@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/registration",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration Invalid Format Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Toko Maju Mundur\",\r\n   \"email\": \"majumundurgmail.com\",\r\n   \"password\": \"123adsfadf@\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/registration",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration Empty Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Toko Maju Mundur\",\r\n   \"email\": \"majumundur@gmail.com\",\r\n   \"password\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/registration",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration Empty Name, Email & Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"\",\r\n   \"email\": \"\",\r\n   \"password\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/registration",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration Empty Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"\",\r\n   \"email\": \"majumundur@gmail.com\",\r\n   \"password\": \"123adsfadf@\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/registration",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var respon = JSON.parse(responseBody)\r",
+									"pm.collectionVariables.set(\"token\", respon.data.accessToken);\r",
+									"pm.collectionVariables.set(\"userId\", respon.data.user.id);\r",
+									"pm.collectionVariables.set(\"refreshToken\", respon.data.refreshToken);\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+									"});\r",
+									"pm.test(\"Body matches string message\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Authentication berhasil ditambahkan\");\r",
+									"});\r",
+									"pm.test(\"Body matches string nama toko\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(respon.data.user.name);\r",
+									"});\r",
+									"pm.test(\"Body matches string email\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(respon.data.user.email);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"{{email}}\",\r\n   \"password\": \"{{password}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/authentications",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Empty Email & Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"\",\r\n   \"password\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/authentications",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Empty Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"{{email}}\",\r\n   \"password\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/authentications",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Empty Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"\",\r\n   \"password\": \"{{password}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/authentications",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Invalid Email &  Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});\r",
+									"pm.test(\"Body matches string message\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"redensial yang Anda berikan salah\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"mundurmundur@gmail.com\",\r\n   \"password\": \"mundur123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/authentications",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Invalid Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});\r",
+									"pm.test(\"Body matches string message\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Kredensial yang Anda berikan salah\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"majumaju@gmail.com\",\r\n   \"password\": \"{{password}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/authentications",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Invalid Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});\r",
+									"pm.test(\"Body matches string message\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Kredensial yang Anda berikan salah\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"{{email}}\",\r\n   \"password\": \"mundur123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/authentications",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Invalid Format Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"majumundur@gmail\",\r\n   \"password\": \"{{password}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/authentications",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"item": [
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body status  matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+									"});\r",
+									"pm.test(\"Body message matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Refresh token berhasil dihapus\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"refreshToken\": \"{{refreshToken}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/authentications",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout Invalid Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});\r",
+									"pm.test(\"Body matches string message\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Refresh token tidak valid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"refreshToken\": \"bukanToken\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/authentications",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout Empty Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"refreshToken\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/authentications",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "User Create",
+					"item": [
+						{
+							"name": "Create User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.collectionVariables.set(\"userId\", respon.data.userId);\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body message matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"User berhasil ditambahkan\");\r",
+											"});\r",
+											"pm.test(\"Body User ID message matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.userId);\r",
+											"});\r",
+											"pm.test(\"Body nama message matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.name);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"{{$randomFullName}}\",\r\n   \"email\": \"{{$randomEmail}}\",\r\n   \"password\": \"{{$randomPassword}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User Invalid Format Email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"{{$randomFullName}}\",\r\n   \"email\": \"@.\",\r\n   \"password\": \"{{$randomPassword}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User Empty Email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"{{$randomFullName}}\",\r\n   \"email\": \"\",\r\n   \"password\": \"{{$randomPassword}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User Empty Password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"{{$randomFullName}}\",\r\n   \"email\": \"{{email}}\",\r\n   \"password\": \"\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User Empty Name, Email & Password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"\",\r\n   \"email\": \"\",\r\n   \"password\": \"\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User Empty Name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"\",\r\n   \"email\": \"{{email}}\",\r\n   \"password\": \"{{$randomPassword}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Detail",
+					"item": [
+						{
+							"name": "Get User Detail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body kasir ID matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.user.id);\r",
+											"});\r",
+											"pm.test(\"Body name matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.user.name);\r",
+											"});\r",
+											"pm.test(\"Body email matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.user.email);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/users/{{userId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Detail Invaid User Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});\r",
+											"pm.test(\"Body matches string message\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"id tidak valid\");\r",
+											"});\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/users/12222222222314214",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"12222222222314214"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Detail Empty User Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"404\");\r",
+											"});\r",
+											"pm.test(\"Body matches string message\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\" Your URL Not Found\");\r",
+											"});\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/users/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User List",
+					"item": [
+						{
+							"name": "Get User List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body id matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.users[0].id);\r",
+											"});\r",
+											"pm.test(\"Body name matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.users[0].name);\r",
+											"});\r",
+											"pm.test(\"Body email matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.users[0].email);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/users",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Delete",
+					"item": [
+						{
+							"name": "Delete User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body message matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"User berhasil dihapus\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/users/{{userId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User Invalid User Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});\r",
+											"pm.test(\"Body matches string message\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"id tidak valid\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/users/123422424",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"123422424"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User Empty User Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body status matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"404\");\r",
+											"});\r",
+											"pm.test(\"Body message matches string message\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Your URL Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/users/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Update",
+					"item": [
+						{
+							"name": "Update User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body message matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"User berhasil diupdate\");\r",
+											"});\r",
+											"var respon = JSON.parse(responseBody)\r",
+											"\r",
+											"pm.test(\"Body name matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.name);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"{{$randomFullName}}\",\r\n    \"email\" : \"{{$randomEmail}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/{{kasirId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"{{kasirId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Invalid Format Email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"{{$randomFullName}}\",\r\n    \"email\" : \"'\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/{{kasirId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"{{kasirId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Empty Email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"{{$randomFullName}}\",\r\n    \"email\" : \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/{{kasirId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"{{kasirId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Empty Name & Email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"\",\r\n    \"email\" : \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/{{kasirId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"{{kasirId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Empty Name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"\",\r\n    \"email\" : \"{{email}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/users/{{kasirId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"users",
+										"{{kasirId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Categories Add",
+					"item": [
+						{
+							"name": "Add Category",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"\r",
+											"pm.collectionVariables.set(\"categoryId\", respon.data.categoryId);\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body message matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Category berhasil ditambahkan\");\r",
+											"});\r",
+											"pm.test(\"Body categoryId matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.categoryId);\r",
+											"});\r",
+											"pm.test(\"Body name matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.name);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"description\": \"{{$randomProductAdjective}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/categories",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Category Empty Name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"\",\r\n   \"description\": \"{{$randomProductAdjective}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/categories",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Category Empty Name & Description",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"\",\r\n   \"description\": \"\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/categories",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Category Detail",
+					"item": [
+						{
+							"name": "Get Category Detail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body nama matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.category.name);\r",
+											"});\r",
+											"pm.test(\"Body deskripsi matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.category.description);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/categories/{{categoryId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"categories",
+										"{{categoryId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Category Datail Empty Category Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"404\");\r",
+											"});\r",
+											"pm.test(\"Body matches string message\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\" Your URL Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/categories/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"categories",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Category List",
+					"item": [
+						{
+							"name": "Get Category List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body name matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.categories[0].name);\r",
+											"});\r",
+											"pm.test(\"Body deskripsi matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.categories[0].description);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/categories",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Category Update",
+					"item": [
+						{
+							"name": "Update Category",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body name matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.name);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"description\": \"{{$randomProductMaterial}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/categories/{{categoryId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"categories",
+										"{{categoryId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Category Empty Name & Description",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"\",\r\n   \"description\": \"\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/categories/{{categoryId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"categories",
+										"{{categoryId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Category Empty Name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"\",\r\n   \"description\": \"{{$randomProductMaterial}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/categories/{{categoryId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"categories",
+										"{{categoryId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Category Delete",
+					"item": [
+						{
+							"name": "Delete Category",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body data matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/categories/{{categoryId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"categories",
+										"{{categoryId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Category Empty Category Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"404\");\r",
+											"});\r",
+											"pm.test(\"Body matches string message\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\" Your URL Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/categories/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"categories",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Customer Add",
+					"item": [
+						{
+							"name": "Add Customer",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.collectionVariables.set(\"customerId\", respon.data.customerId);\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body message status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Customer berhasil ditambahkan\");\r",
+											"});\r",
+											"pm.test(\"Body customerId status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.customerId);\r",
+											"});\r",
+											"pm.test(\"Body nama status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.name);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"{{$randomFullName}}\",\r\n   \"phone\": \"089912345678\",\r\n   \"address\": \"{{$randomCity}}\",\r\n   \"description\": \"{{$randomCountry}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Customer Empty Name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"\",\r\n   \"phone\": \"089912345678\",\r\n   \"address\": \"{{$randomCity}}\",\r\n   \"description\": \"{{$randomCountry}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Customer Invalid Format Phone",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"{{$randomFullName}}\",\r\n   \"phone\": \"089912noku\",\r\n   \"address\": \"{{$randomCity}}\",\r\n   \"description\": \"{{$randomCountry}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Customer Empty All",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"\",\r\n   \"phone\": \"\",\r\n   \"address\": \"\",\r\n   \"description\": \"\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Customer Detail",
+					"item": [
+						{
+							"name": "Get Customer Detail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body name matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.customer.name);\r",
+											"});\r",
+											"pm.test(\"Body phone matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.customer.phone);\r",
+											"});\r",
+											"pm.test(\"Body address matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.customer.address);\r",
+											"});\r",
+											"pm.test(\"Body description matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.customer.description);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/customers/{{customerId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"{{customerId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Customer Detail Empty Customer Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"404\");\r",
+											"});\r",
+											"pm.test(\"Body matches string message\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\" Your URL Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/customers/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Customer Detail Invalid Customer Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});\r",
+											"pm.test(\"Body matches string message\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"id tidak valid\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/customers/235235",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"235235"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Customer List",
+					"item": [
+						{
+							"name": "Get Customer List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body id customers matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.customers[0].id);\r",
+											"});\r",
+											"pm.test(\"Body nama customers matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.customers[0].name);\r",
+											"});\r",
+											"pm.test(\"Body phone customers matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.customers[0].phone);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Customer Update",
+					"item": [
+						{
+							"name": "Update Customer",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body name matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.name);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"{{$randomFullName}}\",\r\n   \"phone\": \"08987654321\",\r\n   \"address\": \"{{$randomCity}}\",\r\n   \"description\": \"{{$randomCountry}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers/{{customerId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"{{customerId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Customer Invalid Format Phone",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"{{$randomFullName}}\",\r\n   \"phone\": \"089876543hp\",\r\n   \"address\": \"{{$randomCity}}\",\r\n   \"description\": \"{{$randomCountry}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers/{{customerId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"{{customerId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Customer Empty Name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"\",\r\n   \"phone\": \"089876543789\",\r\n   \"address\": \"{{$randomCity}}\",\r\n   \"description\": \"{{$randomCountry}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers/{{customerId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"{{customerId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Customer Empty All",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"\",\r\n   \"phone\": \"\",\r\n   \"address\": \"\",\r\n   \"description\": \"\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/customers/{{customerId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"{{customerId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Customer Delete",
+					"item": [
+						{
+							"name": "Delete Customer",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body data matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/customers/{{customerId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"customers",
+										"{{customerId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Product Add",
+					"item": [
+						{
+							"name": "Add Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"\r",
+											"pm.collectionVariables.set(\"productId\", respon.data.productId);\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body message matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Product berhasil ditambahkan\");\r",
+											"});\r",
+											"pm.test(\"Body name matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.name);\r",
+											"});\r",
+											"pm.test(\"Body product id matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.productId);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"{{$randomBankAccount}}\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"8500\",\r\n   \"cost\": \"5000\",\r\n   \"stock\": \"15\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product Empty Category Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"\",\r\n   \"code\": \"{{$randomBankAccount}}\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"8500\",\r\n   \"cost\": \"5000\",\r\n   \"stock\": \"15\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product Empty Code Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"8500\",\r\n   \"cost\": \"5000\",\r\n   \"stock\": \"15\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product Empty Name Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"{{productId}}\",\r\n   \"name\": \"\",\r\n   \"price\": \"8500\",\r\n   \"cost\": \"5000\",\r\n   \"stock\": \"15\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product Empty Price",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"{{productId}}\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"\",\r\n   \"cost\": \"5000\",\r\n   \"stock\": \"15\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product Invalid Format Price",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"{{productId}}\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"lima ribu\",\r\n   \"cost\": \"5000\",\r\n   \"stock\": \"15\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product Invalid Format Cost",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"{{productId}}\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"8500\",\r\n   \"cost\": \"lima ribu\",\r\n   \"stock\": \"15\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product Empty Cost",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"{{productId}}\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"8500\",\r\n   \"cost\": \"\",\r\n   \"stock\": \"15\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product Empty Stock",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"{{productId}}\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"8500\",\r\n   \"cost\": \"5000\",\r\n   \"stock\": \"\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product Invalid Format Stock",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"{{productId}}\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"8500\",\r\n   \"cost\": \"5000\",\r\n   \"stock\": \"lima\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product Cost Greather Than Price",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"{{productId}}\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"8500\",\r\n   \"cost\": \"10000\",\r\n   \"stock\": \"30\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product Detail",
+					"item": [
+						{
+							"name": "Get Product Detail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body name matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.product.name);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/products/{{productId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product Detail Empty Product Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"404\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/products/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product Detail Invalid Product Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});\r",
+											"pm.test(\"Body matches string message\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"id tidak valid\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/products/121312",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"121312"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product List",
+					"item": [
+						{
+							"name": "Get Product List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body id product matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.products[0].id);\r",
+											"});\r",
+											"pm.test(\"Body name product matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.products[0].name);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/products",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product Delete",
+					"item": [
+						{
+							"name": "Delete Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body message matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"message\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/products/{{productId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product Empty Product Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"404\");\r",
+											"});\r",
+											"pm.test(\"Body message matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\" Your URL Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/products/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product Invalid Product Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});\r",
+											"pm.test(\"Body message matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"id tidak valid\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/products/qq35q3",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"qq35q3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product Update",
+					"item": [
+						{
+							"name": "Update Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body matches string status \", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body matches string message\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Product berhasil diupdate\");\r",
+											"});\r",
+											"pm.test(\"Body matches string name\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.name);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"A314ASDDFIER3432\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"3500\",\r\n   \"cost\": \"3000\",\r\n   \"stock\": \"30\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products/{{productId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Empty Name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"A314ASDDFIER3432\",\r\n   \"name\": \"\",\r\n   \"price\": \"3500\",\r\n   \"cost\": \"3000\",\r\n   \"stock\": \"30\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products/{{productId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Empty Price",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"A314ASDDFIER3432\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"\",\r\n   \"cost\": \"3000\",\r\n   \"stock\": \"30\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products/{{productId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Empty Cost",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"A314ASDDFIER3432\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"8000\",\r\n   \"cost\": \"\",\r\n   \"stock\": \"30\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products/{{productId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Empty Stock",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"A314ASDDFIER3432\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"8000\",\r\n   \"cost\": \"5000\",\r\n   \"stock\": \"\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products/{{productId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Invalid Format Price",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"A314ASDDFIER3432\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"delapan ribu\",\r\n   \"cost\": \"5000\",\r\n   \"stock\": \"30\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products/{{productId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Invalid Format Cost",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"A314ASDDFIER3432\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"8000\",\r\n   \"cost\": \"lima ribu\",\r\n   \"stock\": \"30\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products/{{productId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Invalid Format Stock",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"A314ASDDFIER3432\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"8000\",\r\n   \"cost\": \"5000\",\r\n   \"stock\": \"tiga\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products/{{productId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Empty Code Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"{{categoryId}}\",\r\n   \"code\": \"\",\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"price\": \"3500\",\r\n   \"cost\": \"3000\",\r\n   \"stock\": \"30\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/products/{{productId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Transaction Sales",
+			"item": [
+				{
+					"name": "Sales Add",
+					"item": [
+						{
+							"name": "Add Sales",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"\r",
+											"pm.collectionVariables.set(\"saleId\", respon.data.saleId);\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body message matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"transaksi ditambahkan\");\r",
+											"});\r",
+											"pm.test(\"Body saleId matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.saleId);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"customerId\": \"{{customerId}}\",\r\n   \"date\": \"2023-05-12\",\r\n   \"invoice\": \"INV001\",\r\n   \"amount\": 2000,\r\n   \"discount\": 0,\r\n   \"description\": \"Pembelian pertama\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 1,\r\n           \"price\": 2000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/sales",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"sales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Sales Empty Customer Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"customerId\": \"\",\r\n   \"date\": \"2023-05-12\",\r\n   \"invoice\": \"INV001\",\r\n   \"amount\": 2000,\r\n   \"discount\": 0,\r\n   \"description\": \"Pembelian pertama\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 1,\r\n           \"price\": 2000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/sales",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"sales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Sales Empty Invoice",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"customerId\": \"{{customerId}}\",\r\n   \"date\": \"2023-05-12\",\r\n   \"invoice\": \"\",\r\n   \"amount\": 2000,\r\n   \"discount\": 0,\r\n   \"description\": \"Pembelian pertama\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 1,\r\n           \"price\": 2000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/sales",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"sales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Sales Empty Product Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"customerId\": \"{{customerId}}\",\r\n   \"date\": \"2023-05-12\",\r\n   \"invoice\": \"INV001\",\r\n   \"amount\": 2000,\r\n   \"discount\": 0,\r\n   \"description\": \"Pembelian pertama\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"\",\r\n           \"quantity\": 1,\r\n           \"price\": 2000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/sales",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"sales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Sales Invalid Fromat Discount",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"customerId\": \"{{customerId}}\",\r\n   \"date\": \"2023-05-12\",\r\n   \"invoice\": \"INV001\",\r\n   \"amount\": 2000,\r\n   \"discount\": \"salah\",\r\n   \"description\": \"Pembelian pertama\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 1,\r\n           \"price\": 2000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/sales",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"sales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Sales Empty Date",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"customerId\": \"{{customerId}}\",\r\n   \"date\": \"\",\r\n   \"invoice\": \"INV001\",\r\n   \"amount\": 2000,\r\n   \"discount\": 0,\r\n   \"description\": \"Pembelian pertama\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 1,\r\n           \"price\": 2000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/sales",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"sales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Sales Invalid Format Qty",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"customerId\": \"{{customerId}}\",\r\n   \"date\": \"2023-05-12\",\r\n   \"invoice\": \"INV001\",\r\n   \"amount\": 2000,\r\n   \"discount\": 0,\r\n   \"description\": \"Pembelian pertama\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": \"satu\",\r\n           \"price\": 2000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/sales",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"sales"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sales List",
+					"item": [
+						{
+							"name": "Get List Sales Data",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/sales?startDate=2023-05-11&endDate=2023-05-30",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"sales"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2023-05-11"
+										},
+										{
+											"key": "endDate",
+											"value": "2023-05-30"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sales Detail",
+					"item": [
+						{
+							"name": "Get Sales Detail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body customer name matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.sale.customer_id);\r",
+											"});\r",
+											"pm.test(\"Body id product item matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.sale.items[0].id);\r",
+											"});\r",
+											"pm.test(\"Body quantity matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.sale.items[0].quantity);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/sales/{{saleId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"sales",
+										"{{saleId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Sales Detail Invalid Sales Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});\r",
+											"pm.test(\"Body matches string message\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"id tidak valid\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/sales/asdasd21asd",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"sales",
+										"asdasd21asd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Sales Detail IEmpty Sales Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"404\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/sales/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"sales",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Transaction Purchase",
+			"item": [
+				{
+					"name": "Purchase Add",
+					"item": [
+						{
+							"name": "Add Purchase",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.collectionVariables.set(\"purchaseId\", respon.data.purchaseId);\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body message matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"transaksi ditambahkan\");\r",
+											"});\r",
+											"pm.test(\"Body purchase id matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.purchaseId);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"date\": \"2023-01-28\",\r\n   \"invoice\": \"INV/02/12/2023/001\",\r\n   \"amount\": 14000,\r\n   \"discount\": 0,\r\n   \"description\": \"testing\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 10,\r\n           \"cost\": 1000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/purchases",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"purchases"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Purchase Empty Invoice",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"date\": \"2023-01-28\",\r\n   \"invoice\": \"\",\r\n   \"amount\": 14000,\r\n   \"discount\": 0,\r\n   \"description\": \"testing\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 10,\r\n           \"cost\": 1000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/purchases",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"purchases"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Purchase Empty Date",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"date\": \"\",\r\n   \"invoice\": \"INV/02/12/2023/001\",\r\n   \"amount\": 14000,\r\n   \"discount\": 0,\r\n   \"description\": \"testing\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 10,\r\n           \"cost\": 1000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/purchases",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"purchases"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Purchase Invalid Format Discount",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"date\": \"2023-01-28\",\r\n   \"invoice\": \"INV/02/12/2023/001\",\r\n   \"amount\": 14000,\r\n   \"discount\": \"nol\",\r\n   \"description\": \"testing\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 10,\r\n           \"cost\": 1000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/purchases",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"purchases"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Purchase Empty Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"date\": \"2023-01-28\",\r\n   \"invoice\": \"INV/02/12/2023/001\",\r\n   \"amount\": 14000,\r\n   \"discount\": 0,\r\n   \"description\": \"testing\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"\",\r\n           \"quantity\": 10,\r\n           \"cost\": 1000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/purchases",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"purchases"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Purchase Invalid format Qty",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"date\": \"2023-01-28\",\r\n   \"invoice\": \"INV/02/12/2023/001\",\r\n   \"amount\": 14000,\r\n   \"discount\": 0,\r\n   \"description\": \"testing\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": \"sepuluh\",\r\n           \"cost\": 1000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/purchases",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"purchases"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Purchase List",
+					"item": [
+						{
+							"name": "Get List Purchase",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/purchases?startDate=2023-01-28&endDate=2023-01-30&page=1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"purchases"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2023-01-28",
+											"description": "start Date"
+										},
+										{
+											"key": "endDate",
+											"value": "2023-01-30",
+											"description": "end Date"
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "page Number"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Purchase Detail",
+					"item": [
+						{
+							"name": "Get Purchase Detail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var respon = JSON.parse(responseBody)\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Body status matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+											"});\r",
+											"pm.test(\"Body invoice matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.purchase.invoice);\r",
+											"});\r",
+											"pm.test(\"Body name product matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(respon.data.purchase.items[0].name);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/purchases/{{purchaseId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"purchases",
+										"{{purchaseId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Purchase Detail Empty Purchase Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\" Your URL Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/purchases/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"purchases",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Purchase Detail Invalid Purchase Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"pm.test(\"Body matches string status\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"fail\");\r",
+											"});\r",
+											"pm.test(\"Body matches string message\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"id tidak valid\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/purchases/sfet3252",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"purchases",
+										"sfet3252"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://kasir-api.belajarqa.com",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "userId",
+			"value": ""
+		},
+		{
+			"key": "refreshToken",
+			"value": ""
+		},
+		{
+			"key": "kasirId",
+			"value": ""
+		},
+		{
+			"key": "categoryId",
+			"value": ""
+		},
+		{
+			"key": "customerId",
+			"value": ""
+		},
+		{
+			"key": "productId",
+			"value": ""
+		},
+		{
+			"key": "saleId",
+			"value": ""
+		},
+		{
+			"key": "purchaseId",
+			"value": ""
+		}
+	]
+}
